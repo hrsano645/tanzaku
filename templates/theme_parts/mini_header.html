@@ -1,0 +1,16 @@
+<header class="container mini-header my-3 py-3 px-0 text-center">
+  {% block header %}
+
+  <h1 class="page-title text-uppercase">
+    <!-- page -->
+    {% if page %} {{ page.title }}
+    <!-- article: 何も出さない  -->
+    {% elif article %}
+    <!-- category -->
+    {% elif category %} カテゴリー 「{{ category }}」 一覧
+    <!-- tag -->
+    {% elif tags %} タグ 「{{ tags }}」 一覧
+    <!-- その他 -->
+    {% else %} {{ SITENAME }} {% endif %} {% endblock %}
+  </h1>
+</header>

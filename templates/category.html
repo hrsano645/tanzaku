@@ -1,0 +1,42 @@
+<!-- ベースを呼び出し -->
+{% extends "base.html" %}
+<!-- head > title -->
+{% block title %}カテゴリー 「{{ category }}」 一覧 - {{ SITENAME }} {% endblock
+%}
+
+<!-- header -->
+
+{% block header %}{% include 'theme_parts/mini_header.html' %} {% endblock %}
+
+<!-- content -->
+{% block content %}
+
+<main class="main-content container my-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4 px-3">
+    {% for article in articles %}
+    <div class="col">
+      <a
+        href="{{ SITEURL }}/{{ article.url }}"
+        class="link-dark link-opacity-50-hover link-underline-opacity-0"
+      >
+        <div class="card">
+          <div
+            class="d-flex justify-content-center align-items-center"
+            style="height: 200px"
+          >
+            <!-- TODO:2023-12-05 ここで画像がない場合はブランク用の画像を入れる -->
+            <img src= {% if article.image %} "{{ article.image }}" {% else %}
+            "{{ SITEURL }}/theme/images/card_default_news.png" {% endif %}
+            class="card-img-top" alt="{{ article.title }}" style="object-fit:
+            cover; width: 100%; height: 100%" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

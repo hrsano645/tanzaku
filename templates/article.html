@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+<!-- article-meta -->
+{% block head %} {{ super() }} {% for keyword in article.keywords %}
+<meta name="keywords" content="{{keyword}}" />
+{% endfor %} {% for description in article.description %}
+<meta name="description" content="{{description}}" />
+{% endfor %} {% for tag in article.tags %}
+<meta name="tags" content="{{tag}}" />
+{% endfor %} {% endblock %}
+
+<!-- head > title -->
+{% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
+
+<!-- ogp -->
+<!-- TODO: 2023-11-30 OGPのタグ設定をアーティクル用にする。
+画像はアーティクルのサムネイルを使う。デフォルトはサイトのロゴを使う。 -->
+
+<!-- mini_header -->
+{% block header %}{% include 'theme_parts/mini_header.html' %} {% endblock %}
+
+<!-- content -->
+{% block content %}
+<main class="main-content container my-5 px-4">
+  <section class="entry-body prose">
+    <div class="eyecache">
+      {% if article.og_image %}
+      <img
+        src="{{ article.og_image }}"
+        class="card-img-top"
+        alt="{{ article.title }}"
+        style="object-fit: cover; width: 100%; height: 100%"
+      />
+      {% endif %}
+    </div>
+
+    <h1 class="entry-title">
+      <a
+        href="{{ SITEURL }}/{{ article.url }}"
+        rel="bookmark"
+        title="Permalink to {{ article.title|striptags }}"
+        class="text-decoration-none text-dark"
+        >{{ article.title }}</a
+      >
+    </h1>
+
+    <!-- TODO: 2023-11-29 ここにエントリーのメタデータを入れる -->
+
+    <div class="align-items-center mb-4 text-muted author-info">
+      <div class="align-items-center mb-2" title="{{ article.date }}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          class="me-2"
+          fill="currentColor"
+          class="bi bi-calendar-event"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+          />
+          <path
+            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+          />
+        </svg>
+        {{ article.locale_date }}
+      </div>
+      <!-- タグはインラインでbootstrapのボタン表記。btn-ligth を使う
+       -->
+      <div class="tag-inline align-items-center mb-2">
+        {% for tag in article.tags %}
+        <a href="{{ SITEURL }}/{{ tag.url }}" class="btn btn-light btn-sm me-2"
+          >{{ tag }}</a
+        >
+        {% endfor %}
+      </div>
+    </div>
+
+    <hr class="my-2" />
+
+    {% if article.toc %}
+    <div class="entry-toc">{{ article.toc }}</div>
+    {% endif %}
+
+    <div class="entry-content">{{ article.content }}</div>
+    <!-- /.entry-content -->
+  </section>
+</main>
+
+{% endblock %}

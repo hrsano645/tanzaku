@@ -1,0 +1,159 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand" href="{{SITEURL}}/">
+      <!-- site logo. img or svg -->
+      <!-- TODO: 2024-05-15 ここはimgの場合はSITELOGO_IMGPATHでurlやパス, svgの時にはSITELOGO_SVGTAGでsvgタグを受け付ける。svgはdivでくくってアイコンとして小さめに扱えるようにする -->
+
+      {% if SITELOGO_IMGPATH %}
+      <img
+        src="{{ SITELOGO_IMGPATH }}"
+        alt="{{ SITENAME }}"
+        width="30"
+        height="30"
+        class="d-inline-block align-top"
+      />
+      {% elif SITELOGO_SVGTAG %}
+      <div
+        class="sitelogo_svgtag"
+        style="display: inline-block; max-width: 64px; max-height: 64px"
+      >
+        {{ SITELOGO_SVGTAG }}
+      </div>
+      {% endif %}
+
+      <span style="font-weight: bold">{{ SITENAME }}</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!-- 専用のナビゲーション設定 -->
+        {% for menu in NAVIGATION %}
+        <!-- nomalline -->
+        {% if menu.url %}
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="{{ SITEURL }}/{{ menu.url }}"
+            >{{ menu.title }}</a
+          >
+        </li>
+
+        <!-- dropdown -->
+        {% elif menu.dropdown %}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fw-bold"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ menu.title }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% for submenu in menu.dropdown %} {% if submenu.url %}
+            <li>
+              <a
+                class="dropdown-item fw-bold"
+                href="{{ SITEURL }}/{{ submenu.url }}"
+                >{{ submenu.title }}</a
+              >
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+        </li>
+        {% endif %} {% endfor %}
+
+        <!-- pelicanの標準的なナビゲーション -->
+        <!-- ページ -->
+        {% if DISPLAY_PAGES_ON_MENU %} {% for page in pages %}
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="{{ SITEURL }}/{{ page.url }}"
+            >{{ page.title }}</a
+          >
+        </li>
+        {% endfor %} {% endif %}
+
+        <!-- カテゴリ一覧: ドロップダウン -->
+        {% if DISPLAY_CATEGORIES_ON_MENU %}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fw-bold"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            カテゴリ
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% for category, null in categories %}
+            <li class="nav-item">
+              <a
+                class="nav-link fw-bold"
+                href="{{ SITEURL }}/{{ category.url }}"
+                >{{ category.name }}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endif %}
+
+        <!-- タグ一覧: ドロップダウン -->
+        {% if DISPLAY_TAGS_ON_MENU %}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fw-bold"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            たぐ
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% for tag, null in tags %}
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="{{ SITEURL }}/{{ tag.url }}"
+                >{{ tag.name }}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+
+        <!-- アーカイブ -->
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/archives.html">アーカイブ</a>
+        </li>
+
+        <!-- お問い合わせボタン: CONTACT_URLがあればつける -->
+        {% if CONTACT_URL %}
+        <li class="nav-item">
+          <a href="CONTACT_URL"
+            ><button type="button" class="btn btn-primary ms-3">
+              お問い合わせ
+            </button></a
+          >
+        </li>
+        {% endif %}
+
+        <!-- 検索アイコン
+        TODO: 2024-05-15 アイコンを押したら検索の入力ができるようにする or 検索ボックスを出す？ -->
+      </ul>
+    </div>
+  </div>
+</nav>
