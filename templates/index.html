@@ -19,11 +19,11 @@
     <div class="col-12">
       <div class="card border-light">
         <div class="row g-0">
-          {% if article.og_image %}
+          {% if article.og_image or DEFAULT_OG_IMAGE_URL %}
           <div class="col-md-4">
             <a class="link-dark text-decoration-none" href="{{article.url}}">
               <img
-                src="{{ article.og_image }}"
+                src="{% if article.og_image %}{{ article.og_image }}{% else %}{{ DEFAULT_OG_IMAGE_URL }}{% endif %}"
                 class="img-fluid rounded-start"
                 alt="アイキャッチ画像"
             /></a>
@@ -80,10 +80,10 @@
     {% else %}
     <div class="col">
       <div class="card border-light h-100">
-        {% if article.og_image %}
+        {% if article.og_image or DEFAULT_OG_IMAGE_URL%}
         <a class="link-dark text-decoration-none" href="{{article.url}}">
           <img
-            src="{{ article.og_image }}"
+            src="{% if article.og_image %}{{ article.og_image }}{% else %}{{ DEFAULT_OG_IMAGE_URL }}{% endif %}"
             class="card-img-top"
             alt="アイキャッチ画像"
             style="object-fit: cover; width: 100%; height: 200px"
@@ -134,35 +134,5 @@
   </div>
 
   <!-- ページネーション -->
-  {% include 'pagination.html' %}
-
-  <!-- コンテンツ紹介 -->
-  <section class="content-info pt-4 pb-4 px-3">
-    <!-- bootstrapの画像カード。角丸はなくす。カラム構成にして、4つ並べる。中央から並べるようにする
-      pelicanconfからCONTENT_LINKを呼び出す。中身は辞書のリスト。それぞれにbannerが画像、linkがURLがある。-->
-    <div class="row">
-      {% for content in CONTENT_LINK %}
-      <div class="col-md-4">
-        <div class="card">
-          <a
-            href="{{ content.link }}"
-            class="link-dark link-opacity-50-hover link-underline-opacity-0"
-          >
-            <img
-              src="{{ content.banner }}"
-              class="card-img-top"
-              alt="{{ content.title }}"
-              style="object-fit: cover; width: 100%; height: 200px"
-            />
-            <div class="card-body">
-              <h5 class="card-title text-center">{{ content.title }}</h5>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  {% endblock %}
+  {% include 'pagination.html' %} {% endblock %}
 </main>
