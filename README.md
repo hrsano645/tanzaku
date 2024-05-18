@@ -10,11 +10,15 @@ This README status is **draft/wip**.
 
 ## Usage
 
-- Template Setting
-  - `PYGMENTS_STYLE`
-  - `LINKS`
-  - `SOCIAL`
+### pelicanconf.py
 
-- Aanlytics Setting
-  - All Analytics Code: `ANALYTICS`
-  - **deprecated**: `GOOGLE_ANALYTICS`
+See `pelicanconf_sample.py` in this repository.
+
+### publishconf.py
+
+- `SITEURL`: use your website baseurl
+- `DISQUS_SITENAME` = ""
+- `DISQUS_SITEURL` = SITEURL
+- All Analytics Code: `ANALYTICS`
+
+Other config, See `publishconf_sample.py` in this repository.
