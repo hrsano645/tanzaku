@@ -18,7 +18,7 @@ video {
   object-fit: cover;
   display: block;
   height: auto;
-  max-width: 430px;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -357,6 +357,10 @@ https://github.com/tailwindlabs/tailwindcss/blob/master/LICENSE
 .prose video {
   margin-bottom: 2em;
   margin-top: 2em;
+  /* mod */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .prose figure > * {
   margin-bottom: 0;
