@@ -15,13 +15,21 @@ body {
 
 img,
 video {
+  display: block;
   height: auto;
-  max-width: 100%;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* navbar */
+
+/* header */
 .hero-inner > p {
   color: var(--secondary-color);
 }
+
+/* main content */
 .main-content {
   padding-left: 0;
   padding-right: 0;

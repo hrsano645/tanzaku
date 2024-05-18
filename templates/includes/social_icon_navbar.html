@@ -1,0 +1,24 @@
+<!-- 
+    social -> serviceで指定されたSNSのアイコンを表示する
+    icons/[serviec].svg で画像を挿入
+-->
+
+<!-- prettier-ignore -->
+{% if SOCIAL %}
+{% for service, social_url in SOCIAL %}
+<li class="nav-item">
+  <a class="nav-link" href="{{ social_url }}">
+    <!-- prettier-ignore -->
+    {% if service|lower == 'twitter-x' %}{% include 'includes/svg_icons/twitter-x.svg' %}
+    {% endif %}
+    {% if service|lower == 'facebook' %}{% include 'includes/svg_icons/facebook.svg' %}
+    {% endif %}
+    {% if service|lower == 'github' %}{% include 'includes/svg_icons/github.svg' %}
+    {% endif %}
+    {% if service|lower == 'youtube' %}{% include 'includes/svg_icons/youtube.svg' %}
+    {% endif %}
+    {% if service|lower == 'instagram' %}{% include 'includes/svg_icons/instagram.svg' %}
+    {% endif %}
+  </a>
+</li>
+{% endfor %} {% endif %}

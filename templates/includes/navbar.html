@@ -94,7 +94,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            カテゴリ
+            Category
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             {% for category, null in categories %}
@@ -121,7 +121,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            たぐ
+            Tags
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             {% for tag, null in tags %}
@@ -135,12 +135,16 @@
           {% endif %}
         </li>
 
-        <!-- アーカイブ -->
+        <!-- Archives -->
         <li class="nav-item">
-          <a class="nav-link fw-bold" href="/archives.html">アーカイブ</a>
+          <a class="nav-link fw-bold" href="/archives.html">Archives</a>
         </li>
 
-        <!-- お問い合わせボタン: CONTACT_URLがあればつける -->
+        <!-- Social icon -->
+        {% block social_icons %} {% include 'includes/social_icon_navbar.html'
+        %} {% endblock %}
+
+        <!-- contact button: if CONTACT_URL -->
         {% if CONTACT_URL %}
         <li class="nav-item">
           <a href="CONTACT_URL"

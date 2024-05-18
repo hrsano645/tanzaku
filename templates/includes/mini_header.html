@@ -7,9 +7,9 @@
     <!-- article: 何も出さない  -->
     {% elif article %}
     <!-- category -->
-    {% elif category %} カテゴリー 「{{ category }}」 一覧
+    {% elif category %} Category "{{ category }}" list
     <!-- tag -->
-    {% elif tag %} タグ 「{{ tag }}」 一覧
+    {% elif tag %} Tag "{{ tag }}" list
     <!-- その他 -->
     {% else %} {{ SITENAME }} {% endif %} {% endblock %}
   </h1>
