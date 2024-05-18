@@ -22,3 +22,8 @@ See `pelicanconf_sample.py` in this repository.
 - All Analytics Code: `ANALYTICS`
 
 Other config, See `publishconf_sample.py` in this repository.
+
+## Special Thanks
+
+- bootstrap5: <https://getbootstrap.com>
+- tailwindcss typography(prose): <https://tailwindcss-typography.vercel.app>
