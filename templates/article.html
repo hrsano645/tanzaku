@@ -12,10 +12,6 @@
 <!-- head > title -->
 {% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
 
-<!-- ogp -->
-<!-- TODO: 2023-11-30 OGPのタグ設定をアーティクル用にする。
-画像はアーティクルのサムネイルを使う。デフォルトはサイトのロゴを使う。 -->
-
 <!-- mini_header -->
 {% block header %}{% include 'includes/mini_header.html' %} {% endblock %}
 
@@ -43,8 +39,6 @@
         >{{ article.title }}</a
       >
     </h1>
-
-    <!-- TODO: 2023-11-29 ここにエントリーのメタデータを入れる -->
 
     <div class="align-items-center mb-4 text-muted author-info">
       <div class="align-items-center mb-2" title="{{ article.date }}">

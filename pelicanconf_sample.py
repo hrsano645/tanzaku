@@ -1,66 +1,98 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- #
-from __future__ import unicode_literals
+from datetime import datetime
 
-AUTHOR = 'Your Name'
-SITENAME = 'Your Site name'
-SITEURL = ''
+AUTHOR = "[your name]"
+SITENAME = ""
+SITEURL = ""
+SITEDESCRIPTION = ""
 
-PATH = 'content'
+TIMEZONE = "Asia/Tokyo"
+DEFAULT_LANG = "ja"
+DEFAULT_DATE_FORMAT = "%Y-%m-%d(%a)"
 
-TIMEZONE = 'Asia/Tokyo'
-DEFAULT_LANG = 'ja'
+PATH = "content"
+
+# URL, SaveAs
+ARTICLE_URL = "blog/{slug}/"
+ARTICLE_SAVE_AS = "blog/{slug}/index.html"
+PAGE_URL = "{slug}/"
+PAGE_SAVE_AS = "{slug}/index.html"
+
+# other config
+DEFAULT_PAGINATION = 10
+SLUGIFY_SOURCE = "basename"
+SUMMARY_MAX_LENGTH = 30
+
+
+# theme directory
+THEME = "./themes/tanzaku/"
+
+# plugins
+# PLUGIN_PATHS = ["pelican-plugins"]
+# PLUGINS = ["sitemap", "extract_toc"]
+
+# pulgins config: sitemap
+# SITEMAP = {
+#     "format": "xml",
+#     "priorities": {"articles": 0.5, "indexes": 0.5, "pages": 0.5},
+#     "changefreqs": {"articles": "monthly", "indexes": "daily", "pages": "monthly"},
+# }
+
+# plugins config: markdown
+MARKDOWN = {
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"css_class": "highlight"},
+        "markdown.extensions.extra": {},
+        "pymdownx.tilde": {},
+        "pymdownx.magiclink": {},
+        "markdown.extensions.toc": {"title": "ToC"},
+    },
+    "output_format": "html5",
+}
 
 # Feed generation is usually not desired when developing
+# FEED_DOMAIN = SITEURL
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Python.jp', 'http://python.jp/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'))
+# static files... (favicon, robots.txt)
+ARTICLE_EXCLUDES = ["extra"]
 
-# Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+# STATIC_PATHS = [
+#     "images/",
+#     "extra/",
+# ]
 
-DEFAULT_PAGINATION = False
+# EXTRA_PATH_METADATA = {
+#     "extra/robots.txt": {"path": "robots.txt"},
+#     "extra/favicon.ico": {"path": "favicon.ico"},
+# }
 
-# Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# [THEME CONFIG]
+COPYRIGTH = f"&copy; {datetime.now():%Y} {SITENAME} All rights reserved."
 
-# add theme path
-THEME = "please theme path"
+# DEFAULT_OG_IMAGE_URL = ""
+# SITELOGO_SVGTAG = ""
+# SITELOGO_IMGPATH = ""
 
-#----- theme configure -----#
+# index header
+# HEADER_INNER = {
+#     "title": SITENAME,
+#     "message": SITEDESCRIPTION,
+# }
 
-# ABOUT_ME, EXTERNAL_AREA_**はhtmlタグなどを入れてブログパーツ的な物をいれることができます。（ご利用は計画的に）
-ABOUT_ME = """
-ブログについて簡単な説明が書けます
-"""
+# navbar menu
+DISPLAY_PAGES_ON_MENU = True
+DISPLAY_CATEGORIES_ON_MENU = True
+SHOW_ARTICLE_CATEGORY = True
 
-EXTERNAL_AREA_SIDE_1 ="""
-サイドバーの最後から一つ上に挿入されます
-"""
-
-EXTERNAL_AREA_SIDE_2 = """
-サイドバーの最後に挿入されます
-"""
-
-EXTERNAL_AREA_ARTICLE_TOP = """
-ブログ記事の一番上に挿入されます
-"""
-
-EXTERNAL_AREA_ARTICLE_BOTTOM = """
-ブログ記事の一番下に挿入されます
-"""
-
-# demo: https://pygments.org/demo/
-PYGMENTS_STYLE = "paraiso-dark"
-
-#google custom search: by https://cse.google.co.jp/
-#GOOGLE_CUSTOM_SEARCH_ID = ""
+# Social icon: need change
+SOCIAL = (
+    ("Twitter-X", "http://twitter.com/hrs_sano645"),
+    ("Facebook", "https://www.facebook.com/hrs.sano645"),
+    ("Github", "https://github.com/hrsano645"),
+    # ("Instagram", ""),
+    # ("YouTube", ""),
+)
