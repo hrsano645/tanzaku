@@ -91,6 +91,29 @@ footer {
   height: 100%;
 }
 
+/* toc design */
+div.toc {
+  background-color: #f0f0f0;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+div.toc .toctitle {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+div.toc ul {
+  list-style-type: none !important;
+  padding-left: 0;
+  font-size: 0.9rem;
+}
+
+div.toc ul ul {
+  font-size: 0.9rem;
+  padding-left: 1em;
+}
+
 /* ニュースやブログなどの記事を表示するため */
 /* tailwind cssを移植しました。 ライセンス表記は以下の通りです。
 MIT License

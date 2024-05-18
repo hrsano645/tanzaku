@@ -21,7 +21,7 @@
         <div class="row g-0">
           {% if article.og_image or DEFAULT_OG_IMAGE_URL %}
           <div class="col-md-4">
-            <a class="link-dark text-decoration-none" href="{{article.url}}">
+            <a class="link-dark text-decoration-none" href="{{ SITEURL }}/{{ article.url }}">
               <img
                 src="{% if article.og_image %}{{ article.og_image }}{% else %}{{ DEFAULT_OG_IMAGE_URL }}{% endif %}"
                 class="img-fluid rounded-start"
@@ -35,14 +35,14 @@
                 <b
                   ><a
                     class="link-dark text-decoration-none"
-                    href="{{article.url}}"
+                    href="{{ SITEURL }}/{{ article.url }}""
                   >
                     {{ article.title }}</a
                   ></b
                 >
               </h5>
               <p class="card-text">
-                <a class="link-dark text-decoration-none" href="{{article.url}}"
+                <a class="link-dark text-decoration-none" href="{{ SITEURL }}/{{ article.url }}"
                   >{{ article.summary|striptags }}</a
                 >
               </p>
@@ -81,7 +81,7 @@
     <div class="col">
       <div class="card border-light h-100">
         {% if article.og_image or DEFAULT_OG_IMAGE_URL%}
-        <a class="link-dark text-decoration-none" href="{{article.url}}">
+        <a class="link-dark text-decoration-none" href="{{ SITEURL }}/{{ article.url }}">
           <img
             src="{% if article.og_image %}{{ article.og_image }}{% else %}{{ DEFAULT_OG_IMAGE_URL }}{% endif %}"
             class="card-img-top"
@@ -93,13 +93,13 @@
         <div class="card-body">
           <h5 class="card-title">
             <b
-              ><a class="link-dark text-decoration-none" href="{{article.url}}"
+              ><a class="link-dark text-decoration-none" href="{{ SITEURL }}/{{ article.url }}"
                 >{{ article.title }}</a
               ></b
             >
           </h5>
           <p class="card-text">
-            <a class="link-dark text-decoration-none" href="{{article.url}}"
+            <a class="link-dark text-decoration-none" href="{{ SITEURL }}/{{ article.url }}"
               >{{ article.summary|striptags }}</a
             >
           </p>

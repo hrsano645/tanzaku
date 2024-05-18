@@ -4,7 +4,7 @@
 {% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
 
 <!-- mini_header -->
-{% block header %} {% include 'theme_parts/mini_header.html' %} {% endblock %}
+{% block header %} {% include 'includes/mini_header.html' %} {% endblock %}
 
 <!-- content -->
 {% block content %}
@@ -14,45 +14,6 @@
     <div class="entry-content">{{ page.content }}</div>
     <!-- /.entry-content -->
   </section>
-
-  <!-- ページのslugで表示内容を変更する -->
-  <!-- pressの場合 カテゴリのsamples一覧をここで表示する -->
-  {% if page.slug == "press" %}
-  <!-- categoriesから、samplesのカテゴリをフィルターして、中のarticle一覧を生成
-  bootstrap5のcardを使って、サンプルの一覧を表示する。2列 -->
-
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for category in categories %}
-    <!-- category(0)がsamplesの場合 -->
-    {% if category[0] == "samples" %}
-    <!-- samplesのカテゴリのarticleを出力 -->
-    {% for article in category[1] %}
-    <div class="col">
-      <div class="card">
-        <div
-          class="d-flex justify-content-center align-items-center"
-          style="height: 200px"
-        >
-          <img
-            src="{{ article.image }}"
-            class="card-img-top"
-            alt="{{ article.title }}"
-            style="object-fit: cover; width: 100%; height: 100%"
-          />
-        </div>
-        <div class="card-body">
-          <a
-            href="{{ SITEURL }}/{{ article.url }}"
-            class="link-dark link-opacity-50-hover link-underline-opacity-0"
-            ><h5 class="card-title">{{ article.title }}</h5>
-          </a>
-        </div>
-      </div>
-    </div>
-    {% endfor %} {% endif %} {% endfor %}
-  </div>
-
-  {% endif %}
 </main>
 
 {% endblock %}

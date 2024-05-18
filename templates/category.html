@@ -1,42 +1,78 @@
-<!-- ベースを呼び出し -->
-{% extends "base.html" %}
+{% extends "index.html" %}
+
 <!-- head > title -->
-{% block title %}カテゴリー 「{{ category }}」 一覧 - {{ SITENAME }} {% endblock
-%}
+{% block title %}Category "{{ category }}" list - {{ SITENAME }} {% endblock %}
 
 <!-- header -->
+{% block header %}{% include 'includes/mini_header.html' %} {% endblock %}
 
-{% block header %}{% include 'theme_parts/mini_header.html' %} {% endblock %}
-
-<!-- content -->
+<!-- content: only 3 column -->
 {% block content %}
-
-<main class="main-content container my-5">
-  <div class="row row-cols-1 row-cols-md-3 g-4 px-3">
-    {% for article in articles %}
+<main class="main-content container my-5 px-2">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for article in articles_page.object_list %}
     <div class="col">
-      <a
-        href="{{ SITEURL }}/{{ article.url }}"
-        class="link-dark link-opacity-50-hover link-underline-opacity-0"
-      >
-        <div class="card">
-          <div
-            class="d-flex justify-content-center align-items-center"
-            style="height: 200px"
-          >
-            <!-- TODO:2023-12-05 ここで画像がない場合はブランク用の画像を入れる -->
-            <img src= {% if article.image %} "{{ article.image }}" {% else %}
-            "{{ SITEURL }}/theme/images/card_default_news.png" {% endif %}
-            class="card-img-top" alt="{{ article.title }}" style="object-fit:
-            cover; width: 100%; height: 100%" />
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ article.title }}</h5>
-          </div>
+      <div class="card border-light h-100">
+        {% if article.og_image or DEFAULT_OG_IMAGE_URL%}
+        <a
+          class="link-dark text-decoration-none"
+          href="{{ SITEURL }}/{{ article.url }}"
+        >
+          <img
+            src="{% if article.og_image %}{{ article.og_image }}{% else %}{{ DEFAULT_OG_IMAGE_URL }}{% endif %}"
+            class="card-img-top"
+            alt="アイキャッチ画像"
+            style="object-fit: cover; width: 100%; height: 200px"
+          />
+        </a>
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">
+            <b
+              ><a
+                class="link-dark text-decoration-none"
+                href="{{ SITEURL }}/{{ article.url }}"
+                >{{ article.title }}</a
+              ></b
+            >
+          </h5>
+          <p class="card-text">
+            <a
+              class="link-dark text-decoration-none"
+              href="{{ SITEURL }}/{{ article.url }}"
+              >{{ article.summary|striptags }}</a
+            >
+          </p>
+          <p class="card-text">
+            <small class="text-muted">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                class="me-2"
+                fill="currentColor"
+                class="bi bi-calendar-event"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                />
+                <path
+                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                />
+              </svg>
+              {{ article.locale_date }}</small
+            >
+          </p>
+          <p class="card-text">
+            <small class="text-muted">by {{ article.author }}</small>
+          </p>
         </div>
-      </a>
+      </div>
     </div>
     {% endfor %}
   </div>
+
+  <!-- ページネーション -->
+  {% include 'pagination.html' %} {% endblock %}
 </main>
-{% endblock %}
