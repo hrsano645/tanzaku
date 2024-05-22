@@ -433,6 +433,7 @@ https://github.com/tailwindlabs/tailwindcss/blob/master/LICENSE
 
 /* 主にyoutubeなどの埋め込み */
 .prose iframe {
+  max-width: 560px;
   width: 100%;
-  height: 100%;
+  /* height: 100%;  */
 }
