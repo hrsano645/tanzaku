@@ -115,6 +115,8 @@
 
     <div class="entry-content">{{ article.content }}</div>
     <!-- /.entry-content -->
+
+    {% if DISQUS_SITENAME %} {% include 'includes/disqus.html' %} {% endif %}
   </section>
 </main>
 

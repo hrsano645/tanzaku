@@ -14,6 +14,8 @@
     <div class="entry-content">{{ page.content }}</div>
     <!-- /.entry-content -->
   </section>
+
+  {% if DISQUS_SITENAME %} {% include 'includes/disqus.html' %} {% endif %}
 </main>
 
 {% endblock %}
