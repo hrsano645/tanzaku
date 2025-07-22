@@ -29,7 +29,7 @@
 .avatar-image {
     width: 100px;
     height: 100px;
-    border-radius: 12px;
+    border-radius: 8px;
     object-fit: cover;
     border: 3px solid #007bff;
     box-shadow: 0 3px 12px rgba(0, 123, 255, 0.2);
@@ -216,8 +216,8 @@
 }
 
 .qr-code {
-    width: 200px;
-    height: 200px;
+    width: 200px !important;
+    height: 200px !important;
     border-radius: 12px;
     background: white;
     padding: 1rem;
